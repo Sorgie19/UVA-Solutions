@@ -5,9 +5,9 @@ public class PokerHand
 	public static void main(String args[])
 	{
 		Scanner input = new Scanner(System.in);
-		String userInput = input.nextLine();
 		while(input.hasNextLine())
 		{
+			String userInput = input.nextLine();
 			String[] bothHands = userInput.split(" ");
 			String[] blackHand = new String[5];
 			String[] whiteHand = new String[5];
@@ -39,18 +39,11 @@ public class PokerHand
 			else
 			{
 				System.out.println(handDeterminer(blackRank, blackValue, whiteValue));
-			}
-			
-			
-			
-			
-			
-			
-			
-			
-			userInput = input.nextLine();
-			
+			}		
 		}
+		
+		input.close();
+		System.exit(0);
 	}
 	
 	static int[] getCardValues(String[] hand)
@@ -152,7 +145,7 @@ public class PokerHand
 	            return "White wins.";
 	    }
 	    
-	    return "Tie";
+	    return "Tie.";
     }
 	
 	static String handDeterminer(int rank, int[] blackHand, int[] whiteHand)
@@ -230,11 +223,29 @@ public class PokerHand
 		    return tie;		    
 	    }
 	    
+	    else if(rank == 6) //Three of a Kind
+	    {
+	    	if(mostFrequent(blackHand, false) > mostFrequent(whiteHand, false))
+	    		return black;
+	    	else
+	    		return white;
+	    }
 	    
+	    else if(rank == 5)
+		    return getHigh(blackHand, whiteHand);
+	    else if(rank == 4)
+	    	return getHigh(blackHand, whiteHand);
+	    else if(rank == 3 || rank == 2 || rank == 1)
+	    {
+	    	if(mostFrequent(blackHand, false) > mostFrequent(whiteHand, false))
+	    		return black;
+	    	else if(mostFrequent(blackHand, false) < mostFrequent(whiteHand, false))
+	    		return white;
+	    	else
+	    		return tie;
+	    }
 	    
-	    
-	    return "";
-			
+	    return "nothing";
 	}
 	
 	static int mostFrequent(int value[], boolean secondPair)
@@ -283,25 +294,4 @@ public class PokerHand
      
         return res;
     }
-	
-	
-	static int[] findPairs(int[] value, boolean secondHand)
-	{
-		int index = 0;
-		int[] pairs = new int[2];
-		for (int i = 0; i < value.length-1; i++)
-        {
-            for (int j = i+1; j < value.length; j++)
-            {
-                if ((value[i] == value[j]) && (i != j))
-                {
-                    //System.out.println("Duplicate Element : "+ value[j]);
-                    pairs[index++] = value[j];
-                }
-            }
-        }
-		Arrays.sort(pairs);
-		return pairs;
-		
-	}
 }
