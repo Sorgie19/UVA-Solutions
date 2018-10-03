@@ -24,7 +24,6 @@ class Main
 			a = input.nextBigInteger();//get next a input
 			b = input.nextBigInteger();//get next b input
 		} 		
-		
 		input.close(); //Close scanner object
 		System.exit(0); //Exit program successfully
 	}
