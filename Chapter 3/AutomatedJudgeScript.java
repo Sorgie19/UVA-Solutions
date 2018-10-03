@@ -1,5 +1,5 @@
 import java.util.*;
-class Main 
+class Main //Does not work
 {
 	public static void main(String []args)
 	{
