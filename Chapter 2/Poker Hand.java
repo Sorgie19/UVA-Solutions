@@ -1,6 +1,6 @@
 import java.util.Arrays;
 import java.util.Scanner;
-public class PokerHand
+class Main
 {
 	public static void main(String args[])
 	{

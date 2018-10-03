@@ -1,6 +1,5 @@
 import java.util.*;
-
-public class PrimaryArithmetic 
+class Main
 {
 	public static void main(String []args)
 	{

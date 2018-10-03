@@ -1,6 +1,6 @@
 import java.util.*;
 import java.util.HashMap;
-public class WERTYU 
+class Main
 {
 	public static void main(String args[])
 	{

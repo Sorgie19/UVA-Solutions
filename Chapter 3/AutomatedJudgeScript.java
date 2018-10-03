@@ -1,5 +1,5 @@
 import java.util.*;
-public class AutomatedJudgeScript 
+class Main 
 {
 	public static void main(String []args)
 	{
