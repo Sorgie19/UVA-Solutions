@@ -1,67 +1,52 @@
 import java.util.Random;
-
 public class Homework4 
 {
-	
 	public static void main(String[] args)
 	{
-		Random rand = new Random();	
-		int tableSize = 1009;
-		int initialKeys = 900;
-		HashTable linearTable = new HashTable(tableSize);
-		HashTable quadraticTable = new HashTable(tableSize);
-		HashTable doubleHashTable = new HashTable(tableSize);
-		
-		//int[] test = new int[]{10,22,31,4,15,28,17,88,59}; 
-		
-		for(int i = 0; i < initialKeys; i++)
-		{
-			//int key = test[i];
-			int key = rand.nextInt(5000);
-			String value = String.valueOf(key);
-			//System.out.println("Test " + key + " " + value);
-			linearTable.insert(key, value, 1, false);
-			quadraticTable.insert(key, value, 2, false);
-			doubleHashTable.insert(key, value, 3, false);
-			
+		Random rand = new Random(); //Declaring random object to get random ints
+		int tableSize = 1009; //Size of HashTable
+		int initialKeys = 900; //Insert 900 initial keys
+		HashTable linearTable = new HashTable(tableSize); //HashTable for linear probing
+		HashTable quadraticTable = new HashTable(tableSize); //HashTable for quadratic probing
+		HashTable doubleHashTable = new HashTable(tableSize); //HashTable for double hashing
+						
+		for(int i = 0; i < initialKeys; i++) //insert 900 keys into the 3 hashtables with different
+		{									 //Open addressing techniques
+			int key = rand.nextInt(5000); //Random integer up to 5000
+			String value = String.valueOf(key); //Value = Key
+			linearTable.insert(key, value, 1, false); //Insert into linear table
+			quadraticTable.insert(key, value, 2, false); //Insert into quadratic table
+			doubleHashTable.insert(key, value, 3, false); //Insert into doublehash table
 		}
 		
-		//linearTable.printHashTable();
-		//System.out.println("");
-		//quadraticTable.printHashTable();
-		//System.out.println();
-		//doubleHashTable.printHashTable();
-		for(int i = 0; i < 50; i++)
+		for(int i = 0; i < 50; i++) //Insert the additional 50 keys
 		{
-			int key = rand.nextInt(5000);
-			String value = String.valueOf(key);
-			//System.out.println("Test " + key + " " + value);
-			linearTable.insert(key, value, 1, true);
-			quadraticTable.insert(key, value, 2, true);
-			doubleHashTable.insert(key, value, 3, true);
+			int key = rand.nextInt(5000); //Key = random integer up to 5000
+			String value = String.valueOf(key); //Key = Value
+			linearTable.insert(key, value, 1, true); //Insert into linear table
+			quadraticTable.insert(key, value, 2, true); //Insert into quadratic table
+			doubleHashTable.insert(key, value, 3, true); //Insert into doublehash table
 		}
 		
-		System.out.println("Liner probe count: " + linearTable.linearProbeCount);
-		System.out.println("Quadratic probe count: " + quadraticTable.quadraticProbeCount);
-		System.out.println("Double hash probe count: " + doubleHashTable.doubleHashProbeCount);
-	}
-	
-	
-	
+		System.out.println("Liner probe count: " + linearTable.getLinearProbeCount()); //Output the linear probe counter
+		System.out.println("Quadratic probe count: " + quadraticTable.getQuadraticProbeCount()); //Output the quadratic probe counter
+		System.out.println("Double hash probe count: " + doubleHashTable.getDoubleHashProbeCount()); //Output the double has probe counter
+		
+	}	
 }
 
-/** Class HashTable **/
+//Class Hashtable
 class HashTable
 {
-	private int currentSize;
-	private int maxSize;
-	private String[] keys;
-	private String[] values; 
-	public int linearProbeCount;
-	public int quadraticProbeCount;
-	public int doubleHashProbeCount;
+	private int currentSize; //Holds the current size of the hashtable
+	private int maxSize; //Size of the hashtable
+	private String[] keys; //Array to hold keys
+	private String[] values; //Array to hold the values
+	private int linearProbeCount; //Linear Probe Count
+	private int quadraticProbeCount; //Quadratic Probe Count
+	private int doubleHashProbeCount; //Double Hash Probe Count
 
-	/** Constructor **/
+	//Constructor
 	public HashTable(int capacity)
 	{
 		currentSize = 0;
@@ -70,37 +55,43 @@ class HashTable
 		values = new String[maxSize];
 	}
 	
-	/** Function to get size of hash table **/
+	//Gets current size of hashtable
 	public int getSize()
 	{
 		return currentSize;
 	}
 	
-	/** Function to get max size of hash table **/
+	//Gets the linear probe count
+	public int getLinearProbeCount()
+	{
+		return linearProbeCount;
+	}
+	
+	//Gets the quadratic probe count
+	public int getQuadraticProbeCount()
+	{
+		return quadraticProbeCount;
+	}
+	
+	//Gets the double has probe count
+	public int getDoubleHashProbeCount()
+	{
+		return doubleHashProbeCount;
+	}
+	
+	//Gets the size of the hashtable
 	public int getMaxSize()
 	{
 		return maxSize;
 	}
 	
-	/** Function to check if hash table is full **/
-	public boolean isFull()
-	{
-		return currentSize == maxSize;
-	}
-	
-	/** Function to check if hash table is empty **/
-	public boolean isEmpty()
-	{
-		return getSize() == 0;
-	}
-	
-	/** Function to check if hash table contains a key **/
+	//Checks if hashtable contains a key
 	public boolean contains(String key)
 	{
 		return get(key) != null;
 	}
 	
-	/** Function to get value for a given key **/
+	//Gets value from hashtable given a key
 	public String get(String key)
 	{
 		int i = Integer.parseInt(key);
@@ -113,6 +104,7 @@ class HashTable
 		return null;
 	}
 	
+	//linear probe hash method
 	public int linearHash(int key, int i, boolean count)
 	{
 		if(count)
@@ -124,6 +116,7 @@ class HashTable
 			return hash;
 	}
 	
+	//quadratic probe hash method
 	public int quadraticHash(int key, int i, int c1, int c2, boolean count)
 	{
 		if(count)
@@ -135,6 +128,7 @@ class HashTable
 			return hash;
 	}
 	
+	//Double hash probe hash method
 	public int doubleHash(int key, int i, boolean count)
 	{
 		if(count)
@@ -146,18 +140,18 @@ class HashTable
 			return hash;
 	}
 	
-	/** Function to insert key-value pair **/
+	//Inserts key-value pair into hashtable
 	public void insert(int key, String value, int probeType, boolean count)
 	{   
 		int i = 0;
-		if(probeType == 1)
+		if(probeType == 1) //linear hash
 			i = linearHash(key, 0, count);
-		else if(probeType == 2)
+		else if(probeType == 2)//quadratic hash
 			i = quadraticHash(key, 0, 1, 3, count);
-		else if(probeType == 3)
+		else if(probeType == 3)// double hash
 			i = doubleHash(key, 0, count);
 		
-		if (keys[i] == null) //If index is empty
+		if (keys[i] == null) //insert if index is null
 		{
 			keys[i] = String.valueOf(i); 
 			values[i] = value;
@@ -166,7 +160,7 @@ class HashTable
 			
 	}
 	
-	/** Function to print HashTable **/
+	//Prints hashtable
 	public void printHashTable()
 	{
 		System.out.println("\nHash Table: ");
