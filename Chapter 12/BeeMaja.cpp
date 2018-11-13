@@ -10,8 +10,8 @@ int main()
         
         while(b < n)
         {
-            a++;
-            b+=6*a;
+	    b += 6 * a;
+            a++;            
         }
         
         int y = 0;
@@ -21,39 +21,39 @@ int main()
         {
             while(b != n && y + a != 0)
             {
-				b--;
+		b--;
                 y--;
             }
             
             while(b != n && x != 0)
             {
-				b--;
+		b--;
                 x--;
             }
 			
             while(b !=n && y != 0)
             {
-				b--;
+		b--;
                 x--;
                 y++;
             }
             while(b !=n && y != a)
             {
-				b--;
+		b--;
                 y++;
             }
             while(b !=n && x != 0)
             {
-				b--;
+		b--;
                 x++;
             }
             while(b != n && x != a)
             {
-				b--;
+		b--;
                 x++;
                 y--;
             }
         }
-        cout<<x<<' '<<y<<endl;
+        cout << x << ' ' << y << endl;
     }
 }
