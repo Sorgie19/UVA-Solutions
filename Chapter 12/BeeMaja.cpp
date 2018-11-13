@@ -21,35 +21,35 @@ int main()
         {
             while(b != n && y + a != 0)
             {
-				b--;
+		b--;
                 y--;
             }
             
             while(b != n && x != 0)
             {
-				b--;
+		b--;
                 x--;
             }
 			
             while(b !=n && y != 0)
             {
-				b--;
+		b--;
                 x--;
                 y++;
             }
             while(b !=n && y != a)
             {
-				b--;
+		b--;
                 y++;
             }
             while(b !=n && x != 0)
             {
-				b--;
+		b--;
                 x++;
             }
             while(b != n && x != a)
             {
-				b--;
+		b--;
                 x++;
                 y--;
             }
