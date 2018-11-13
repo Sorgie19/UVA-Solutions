@@ -10,8 +10,8 @@ int main()
         
         while(b < n)
         {
-            a++;
-            b+=6*a;
+		    b += 6 * a;
+            a++;            
         }
         
         int y = 0;
@@ -54,6 +54,6 @@ int main()
                 y--;
             }
         }
-        cout<<x<<' '<<y<<endl;
+        cout << x << ' ' << y << endl;
     }
 }
