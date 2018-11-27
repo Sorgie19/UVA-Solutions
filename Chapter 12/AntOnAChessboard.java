@@ -1,5 +1,5 @@
 import java.util.Scanner;
-class AntOnAChessboard 
+class Main
 {
     public static void main(String[] args) 
     {
