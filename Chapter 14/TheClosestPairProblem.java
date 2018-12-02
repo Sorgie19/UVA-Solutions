@@ -6,7 +6,7 @@ import java.util.Scanner;
 //The referenced solution i found had almost the same algorithm as mine, except they used a 2 dimensional double array
 //and I created my own Point class.
 //No matter what i tried I kept getting time limit exceeded so I decided to just switch it over to the 2 dimensional array
-public class TheClosestPairProblem 
+public class Main
 {
 
 	public static void main(String[] args) throws IOException 
