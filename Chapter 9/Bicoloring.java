@@ -4,18 +4,18 @@ import java.util.Scanner;
 
 public class Main
 {
-	public static boolean DFS(Graph graph, int v, boolean[] discovered, boolean[] color) //Returns true if Bicolorable
+	public static boolean DepthFirstSearch(Graph G, int v, boolean[] seen, boolean[] color) //Returns true if Bicolorable
 	 {
-	     for (int u : graph.adjList.get(v))
+	     for (int vertex : G.adjacencyList.get(v))
 	     {
-	    	 if (discovered[u] == false)
+	    	 if (seen[vertex] == false)
 	         {
-	             discovered[u] = true;
-	             color[u] = !color[v];
-	             if (DFS(graph, u, discovered, color) == false)
+	             seen[vertex] = true;
+	             color[vertex] = !color[v];
+	             if (DepthFirstSearch(G, vertex, seen, color) != true)
 	                 return false;
 	         }
-	         else if (color[v] == color[u]) 
+	         else if (color[v] == color[vertex]) 
 	         {
 	             return false;
 	         }
@@ -43,7 +43,7 @@ public class Main
 			color[0] = false;
 			seen[0] = true;
 	        
-	        if (DFS(graph, 0, seen, color))
+	        if (DepthFirstSearch(graph, 0, seen, color))
 	            System.out.println("BICOLORABLE.");
 	        else
 	            System.out.println("NOT BICOLORABLE.");
@@ -59,7 +59,6 @@ class Edge
 {
 	int v1;
 	int v2;
-
 	public Edge(int v1, int v2) 
 	{
 		this.v1 = v1;
@@ -71,16 +70,16 @@ class Edge
 class Graph
 {
 	//adjacency list
-	List<List<Integer>> adjList = null;
+	List<List<Integer>> adjacencyList = null;
 
 	// Constructor
 	Graph(List<Edge> edges, int N)
 	{
-		adjList = new ArrayList<>(N);
+		adjacencyList = new ArrayList<>(N);
 
 		for (int i = 0; i < N; i++) 
 		{
-			adjList.add(i, new ArrayList<>());
+			adjacencyList.add(i, new ArrayList<>());
 		}
 
 		// add edges to the undirected graph
@@ -88,8 +87,8 @@ class Graph
 		{
 			int v1 = edges.get(i).v1;
 			int v2 = edges.get(i).v2;
-			adjList.get(v1).add(v2);
-			adjList.get(v2).add(v1);
+			adjacencyList.get(v1).add(v2);
+			adjacencyList.get(v2).add(v1);
 		}
 	}
 }
