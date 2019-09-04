@@ -1,70 +1,54 @@
 import java.text.DecimalFormat;
-import java.util.*;
-class TheTrip 
+import java.util.Scanner;
+
+public class TheTrip
 {
+
 	public static void main(String[] args)
 	{
 		Scanner input = new Scanner(System.in);
 		int totalCosts = input.nextInt();
-		while(totalCosts != 0)
+
+		while (totalCosts != 0)
 		{
-			double[] cost = new double[totalCosts];
+			double[] costs = new double[totalCosts + 1];
+			double average = 0;
 			
-			for(int i = 0; i < totalCosts; i++)
+			for (int i = 0; i < totalCosts; i++)
 			{
-				cost[i] = input.nextDouble();
+				costs[i] = input.nextDouble();
+				average += costs[i];
+			}
+
+			average = average / totalCosts;
+			
+			double positive = 0;
+			double negative = 0;
+			
+			for (int i = 0; i < totalCosts; i++)
+			{
+				double v = (long) ((costs[i] - average) * 100.0) / 100.0;
+				if (v > 0)
+					positive += v;
+				else
+					negative += v;
 			}
 			
+			
+			negative = -negative;
 			DecimalFormat df = new DecimalFormat();
 			df.applyPattern("##0.00");
-			System.out.println("$" + df.format(payToAverage(cost, totalCosts)));
+			double answer;
+			if(negative > positive)
+				answer = negative;
+			else
+				answer = positive;
+			System.out.println("$" + df.format(answer));
 			totalCosts = input.nextInt();
 		}
-		
+
 		input.close();
 		System.exit(0);
-		
-	}
-	
-	static double average(double[] cost, int totalCosts)
-	{
-		double total = 0;
-		for(int i = 0; i < totalCosts; i++)
-		{
-			total += cost[i];
-		}
-		//double average = Math.round((total/totalCosts) * 100.000) / 100.000;
-		double average = total/totalCosts;
-		return average;
-	}
-	
-	static double remainder(double[] cost, int totalCosts)
-	{
-		double total = 0;
-		for(int i = 0; i < totalCosts; i++)
-		{
-			total += cost[i];
-		}
-		
-		return total % totalCosts;
-	}
-	static double payToAverage(double[] cost, int totalCosts)
-	{
-		double a = 0;
-		double b = 0;
-		double average = average(cost, totalCosts);	
-		double rem = remainder(cost, totalCosts);
-		for(int i = 0; i < totalCosts; i++)
-		{
-			if(cost[i] > average)
-			{
-				a += cost[i] - average;
-				b++;
-			}
-		}
-		System.out.println (a + " " + b);
-		double test = a - (Math.min(b, rem));
-		return test;
 	}
 
 }
