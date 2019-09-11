@@ -1,7 +1,7 @@
 import java.text.DecimalFormat;
 import java.util.Scanner;
 
-public class TheTrip
+class Main
 {
 
 	public static void main(String[] args)
