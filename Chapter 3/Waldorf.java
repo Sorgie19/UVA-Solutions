@@ -1,3 +1,5 @@
+package Chapter2;
+
 import java.util.Scanner;
 
 public class Waldorf
@@ -25,7 +27,6 @@ public class Waldorf
 			}
 			
 			int numOfWords = input.nextInt();
-			String[] words = new String[numOfWords];
 			input.nextLine();
 			for(int word = 0; word < numOfWords; word++)
 			{
@@ -38,14 +39,17 @@ public class Waldorf
 					{
 						if(searchWord[0] == grid[i][k])
 						{
-							//search up
-							//search down
-							//search left
-							//search right
-							//search up right diag
-							//search up left diag
-							//search down right diag
-							//search down left diag
+							if(searchUp(grid, searchWord, n, m, i, k) ||
+							searchDown(grid, searchWord, n, m, i, k) ||
+							searchLeft(grid, searchWord, n, m, i, k) ||
+							searchRight(grid, searchWord, n, m, i, k) ||
+							searchDiagUpRight(grid, searchWord, n, m, i, k) ||
+							searchDiagUpLeft(grid, searchWord, n, m, i, k) ||
+							searchDiagDownLeft(grid, searchWord, n, m, i, k) ||
+							searchDiagDownRight(grid, searchWord, n, m, i, k))
+							{
+								System.out.println(i + " " + k);
+							}
 						}
 					}
 				}
@@ -54,39 +58,80 @@ public class Waldorf
 			
 			
 			//Printing board
-			for(int i = 0; i < m; i++)
+			/*for(int i = 0; i < m; i++)
 			{
 				for(int k = 0; k < n; k++)
 				{
 					System.out.print(grid[i][k]);
 				}
 				System.out.println();
-			}
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-		}
-		
-		
-		
-		
+			}*/		
+		}	
 
-	}	
+	}
+	
+	public static boolean searchUp(char[][] grid, char[] word, int m, int n, int a, int b)
+	{
+		//if length of word is longer than search up
+		return false;
+		
+		
+	}
+	
+	public static boolean searchDown(char[][] grid, char[] word, int m, int n, int a, int b)
+	{
+		//if length of word is longer than search up
+		return false;
+		
+		
+	}
+	
+	public static boolean searchLeft(char[][] grid, char[] word, int m, int n, int a, int b)
+	{
+		//if length of word is longer than search up
+		return false;
+		
+		
+	}
+	
+	public static boolean searchRight(char[][] grid, char[] word, int m, int n, int a, int b)
+	{
+		//if length of word is longer than search up
+		return false;
+		
+		
+	}
+	
+	public static boolean searchDiagUpRight(char[][] grid, char[] word, int m, int n, int a, int b)
+	{
+		//if length of word is longer than search up
+		return false;
+		
+		
+	}
+	
+	public static boolean searchDiagUpLeft(char[][] grid, char[] word, int m, int n, int a, int b)
+	{
+		//if length of word is longer than search up
+		return false;
+		
+		
+	}
+	
+	public static boolean searchDiagDownLeft(char[][] grid, char[] word, int m, int n, int a, int b)
+	{
+		//if length of word is longer than search up
+		return false;
+		
+		
+	}
+	
+	public static boolean searchDiagDownRight(char[][] grid, char[] word, int m, int n, int a, int b)
+	{
+		//if length of word is longer than search up
+		return false;
+		
+		
+	}
 
 }
