@@ -25,8 +25,8 @@ class Main
 		count++;
 		long reversed = reverseInt(num);
 		long sum = num + reversed;
-		System.out.println("num = " + num + " | " + "reversed = " + reversed);
-		System.out.println(sum);
+		//System.out.println("num = " + num + " | " + "reversed = " + reversed);
+		//System.out.println(sum);
 		if(isPalindrome(sum))
 			return (count + " " + sum);
 		else
