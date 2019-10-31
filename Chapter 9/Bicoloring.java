@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-
+import java.util.*;
 public class Main
 {
 	public static boolean DepthFirstSearch(Graph G, int v, boolean[] seen, boolean[] color) //Returns true if Bicolorable

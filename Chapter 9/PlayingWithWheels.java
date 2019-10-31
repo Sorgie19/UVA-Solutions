@@ -1,19 +1,18 @@
 import java.util.*;
-public class Main 
+class Main
 {
 	public static void main(String[] args) 
 	{
 		Scanner input = new Scanner(System.in);		
 		int testCase = input.nextInt();
-		Set<String> forbidden;
 		while(testCase-- > 0)
 		{
-			Map<String, Integer> shortestPath = new HashMap<String, Integer>();			
-			forbidden = new HashSet<String>();
-			String initial = getInputs(input);
+			HashMap<String, Integer> shortestPath = new HashMap<String, Integer>();			
+			HashSet<String> forbidden = new HashSet<String>();
+			HashSet<String> seen = new HashSet<String>();
 			Queue<String> Q = new LinkedList<String>();
-			String target = getInputs(input);	
-			Set<String> seen = new HashSet<String>();
+			String initial = getInputs(input);			
+			String target = getInputs(input);			
 			int forbiddenCombinations = input.nextInt();			
 			addForbiddenCombinations(forbiddenCombinations, input, forbidden);			
 			BredthFirstSearch(Q, forbidden, seen, shortestPath, initial);			
@@ -24,7 +23,7 @@ public class Main
 		System.exit(0);
 	}
 	
-	static void printPossibility(String target, Map<String, Integer> distance)
+	static void printPossibility(String target, HashMap<String, Integer> distance)
 	{
 		if (distance.containsKey(target))
 			System.out.println(distance.get(target));
@@ -32,7 +31,7 @@ public class Main
 			System.out.println(-1);
 	}
 	
-	static void BredthFirstSearch(Queue<String> queue, Set<String> forbidden, Set<String> visited, Map<String, Integer> distance, String initial)
+	static void BredthFirstSearch(Queue<String> queue, HashSet<String> forbidden, HashSet<String> visited, HashMap<String, Integer> distance, String initial)
 	{
 		visited.add(initial);
 		distance.put(initial, 0);
@@ -59,8 +58,7 @@ public class Main
 					queue.offer(w);
 				}
 				
-				c = v.toCharArray();
-				
+				c = v.toCharArray();				
 				if(c[i] < '9')
 					c[i] = (char)(c[i] + 1);
 				else
@@ -88,14 +86,12 @@ public class Main
 		return S;
 	}
 	
-	static void addForbiddenCombinations(int forbiddenCombinations, Scanner input, Set<String> forbidden)
+	static void addForbiddenCombinations(int forbiddenCombinations, Scanner input, HashSet<String> forbidden)
 	{
+		//Gets N amount of forbidden combinations and adds it to the 
 		for (int i = 0; i < forbiddenCombinations; ++i)
 		{
-			forbidden.add(input.next() 
-					+ input.next() 
-					+ input.next() 
-					+ input.next());
+			forbidden.add(getInputs(input));
 		}
 	}
 }
