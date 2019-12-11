@@ -1,4 +1,5 @@
 #include<bits/stdc++.h>
+#include <iostream>
 using namespace std;
 int main()
 {
@@ -7,7 +8,7 @@ int main()
     while(testCase > 0) //While test cases is above zero
     {
         vector<int> v; //Declaring vector
-        int numOfResidents //number of residents
+        int numOfResidents; //number of residents
         cin>>numOfResidents; //Get user input of number of residents
         int streets[numOfResidents]; //Array of streets
         
